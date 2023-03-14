@@ -5,6 +5,87 @@
     <title>Method Test</title>
 </head>
 <body>
-    
+    <form>
+        <div>
+            <label for="id">ID:</label>
+            <input type="text" id="id" name="id">
+        </div>
+        <div>
+            <label for="article_name">Article Name:</label>
+            <input type="text" id="article_name" name="article_name">
+        </div>
+        <div>
+            <label for="article_body">Article Body:</label>
+            <textarea id="article_body" name="article_body"></textarea>
+        </div>
+        <div>
+            <label for="date">Date:</label>
+            <input type="text" id="date" name="date" readonly>
+        </div>
+        <div>
+            <button type="button" id="postBtn">POST</button>
+            <button type="button" id="getBtn">GET</button>
+            <button type="button" id="putBtn">PUT</button>
+            <button type="button" id="deleteBtn">DELETE</button>
+        </div>
+    </form>
+    <div>
+        <label for="response">Response:</label>
+        <output id="response"></output>
+    </div>
+
+    <script>
+        var dateOutput = document.getElementById("date");
+        dateOutput.value = new Date().toLocaleString();
+
+        // helper function to format the response data
+        function formatResponse(response) {
+            var result = "<pre>";
+            result += JSON.stringify(response, null, 2);
+            result += "</pre>";
+            return result;
+        }
+
+        // Send a POST request to the endpoint when the post button is clicked
+        let postBtn = document.getElementById("postBtn");
+        postBtn.addEventListener("click", () => {
+            let ID = document.getElementById("id").value;
+            let articleName = document.getElementById("article_name").value;
+            let articleBody = document.getElementById("article_body").value;
+
+            let data = {
+            id: ID,
+            article_name: articleName,
+            article_body: articleBody
+            };
+
+            fetch("https://httpbin.org/post", {
+            method: "POST",
+            body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+            let responseOutput = document.getElementById("response");
+            responseOutput.innerHTML = formatResponse(data);
+            });
+        });
+
+        // Send a GET request to the endpoint when the get button is clicked
+        let getBtn = document.getElementById("getBtn");
+        getBtn.addEventListener("click", () => {
+            fetch("https://httpbin.org/get")
+            .then(response => response.json())
+            .then(data => {
+            let responseOutput = document.getElementById("response");
+            responseOutput.innerHTML = formatResponse(data);
+            });
+        });
+
+        // Send a PUT request to the endpoint when the put button is clicked
+        
+
+        // Send a DELETE request to the endpoint when the put button is clicked
+
+    </script>
 </body>
 </html>
