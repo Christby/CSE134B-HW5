@@ -10,7 +10,7 @@ class buttonCount extends HTMLElement {
         this.count = 0;
         let btn = this.shadowRoot.querySelector('button');
         btn.addEventListener('click', () => {
-            this.count ++;
+            this.count += 1;
             btn.innerHTML = `Times Clicked: ${this.count}`;
         })
     }
