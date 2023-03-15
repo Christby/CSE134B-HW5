@@ -42,7 +42,7 @@ let getBtn = document.getElementById("getBtn");
 getBtn.addEventListener("click", () => {
     let ID = document.getElementById("id").value;
     let articleName = document.getElementById("article_name").value;
-    let qs = `id=${ID}/name=${articleName}`;
+    let qs = `id=${ID}&name=${articleName}`;
     let url = `https://httpbin.org/get?`;
     url += qs;
 
@@ -86,7 +86,7 @@ let deleteBtn = document.getElementById("deleteBtn");
 deleteBtn.addEventListener("click", () => {
     let ID = document.getElementById("id").value;
     let articleName = document.getElementById("article_name").value;
-    let qs = `id=${ID}/name=${articleName}`;
+    let qs = `id=${ID}&name=${articleName}`;
     let url = `https://httpbin.org/delete?`;
     url += qs;
 
