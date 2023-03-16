@@ -17,7 +17,8 @@
       <textarea id="article_body" name="article_body"></textarea><br>
 
       <label for="date">Date:</label>
-      <input type="text" id="date" name="date" value="current date" disabled><br>
+      <input type="text" id="date" name="date" value="current date" disabled>
+      <br>
 
       <button type="button" id="postBtn" @click="handlePostRequest">Post</button>
       <button type="button" id="getBtn" @click="handleGetRequest">Get</button>
@@ -32,7 +33,7 @@
     let app = new Vue({
       el: '#requests',
       data: {
-        currentDate: new Date().toISOString(),
+        currentDate: new Date().toLocaleString(),
         jsonResponse: null,
       },
       methods: {
