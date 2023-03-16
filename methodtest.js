@@ -5,14 +5,6 @@ document.getElementById('curDate').style.visibility = 'hidden';
 let fetchVal = document.getElementById('fetch');
 let XMLVal = document.getElementById('XMLHttpRequest');
 
-// helper function to format the response data
-function formatResponse(response) {
-    var result = "<pre>";
-    result += JSON.stringify(response, null, 2);
-    result += "</pre>";
-    return result;
-}
-
 // Send a POST request to the endpoint when the post button is clicked
 let postBtn = document.getElementById("postBtn");
 postBtn.addEventListener("click", () => {
@@ -34,7 +26,7 @@ postBtn.addEventListener("click", () => {
         .then(response => response.json())
         .then(data => {
         let responseOutput = document.getElementById("response");
-        responseOutput.innerHTML = formatResponse(data);
+        responseOutput.innerHTML = JSON.stringify(data, null, 2);
         });
     }
     else if(XMLVal.checked){
@@ -49,7 +41,7 @@ postBtn.addEventListener("click", () => {
         formData.set("article name", articleName);
         formData.set("article body", articleBody);
         formData.set("date", date);
-        
+
         request.responseType = "json";
         request.send(formData);
         request.addEventListener("load", function(){
@@ -74,7 +66,7 @@ getBtn.addEventListener("click", () => {
         .then(response => response.json())
         .then(data => {
         let responseOutput = document.getElementById("response");
-        responseOutput.innerHTML = formatResponse(data);
+        responseOutput.innerHTML = JSON.stringify(data, null, 2);
         });
     }
     else if(XMLVal.checked){
@@ -115,7 +107,7 @@ putBtn.addEventListener("click", () => {
         .then(response => response.json())
         .then(data => {
         let responseOutput = document.getElementById("response");
-        responseOutput.innerHTML = formatResponse(data);
+        responseOutput.innerHTML = JSON.stringify(data, null, 2);
         });
     }
     else if(XMLVal.checked){
@@ -155,7 +147,7 @@ deleteBtn.addEventListener("click", () => {
         .then(response => response.json())
         .then(data => {
         let responseOutput = document.getElementById("response");
-        responseOutput.innerHTML = formatResponse(data);
+        responseOutput.innerHTML = JSON.stringify(data, null, 2);
         });
     }
     else if(XMLVal.checked){

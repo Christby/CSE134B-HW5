@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vue HTTP Requests</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+  <div id="requests">
+    <form>
+      <label for="id">ID:</label>
+      <input type="text" id="id" name="id"><br>
+
+      <label for="article_name">Article Name:</label>
+      <input type="text" id="article_name" name="article_name"><br>
+
+      <label for="article_body">Article Body:</label><br>
+      <textarea id="article_body" name="article_body"></textarea><br>
+
+      <label for="date">Date:</label>
+      <input type="text" id="date" name="date" value="current date" disabled><br>
+
+      <button type="button" id="postBtn" @click="handlePostRequest">Post</button>
+      <button type="button" id="getBtn" @click="handleGetRequest">Get</button>
+      <button type="button" id="putBtn" @click="handlePutRequest">Put</button>
+      <button type="button" id="deleteBtn" @click="handleDeleteRequest">Delete</button>
+    </form>
+
+    <pre><output id="response">{{ jsonResponse }}</output></pre>
+  </div>
+
+  <script>
+    let app = new Vue({
+      el: '#requests',
+      data: {
+        currentDate: new Date().toISOString(),
+        jsonResponse: null,
+      },
+      methods: {
+        async handlePostRequest() {
+          let id = document.getElementById('id').value;
+          let articleName = document.getElementById('article_name').value;
+          let articleBody = document.getElementById('article_body').value;
+          let date = this.currentDate;
+          let input = {
+            id,
+            articleName,
+            articleBody,
+            date
+          };
+
+          await this.handleRequest('https://httpbin.org/post', 'POST', input);
+        },
+
+        async handleGetRequest() {
+          await this.handleRequest('https://httpbin.org/get', 'GET');
+        },
+
+        async handlePutRequest() {
+          let id = document.getElementById('id').value;
+          let articleName = document.getElementById('article_name').value;
+          let articleBody = document.getElementById('article_body').value;
+          let date = this.currentDate;
+          let input = {
+            id,
+            articleName,
+            articleBody,
+            date
+          };
+
+          await this.handleRequest('https://httpbin.org/put', 'PUT', input);
+        },
+
+        async handleDeleteRequest() {
+          await this.handleRequest('https://httpbin.org/delete', 'DELETE');
+        },
+
+        async handleRequest(url, method, data = null) {
+          try {
+            let response = await fetch(url, {
+              method: method,
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: data ? JSON.stringify(data) : null
+            });
+            let jsonResponse = await response.json();
+            this.jsonResponse = JSON.stringify(jsonResponse, null, 2);
+          } catch (error) {
+            console.error(error);
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
