@@ -2,6 +2,11 @@ var dateOutput = document.getElementById("date");
 dateOutput.value = new Date().toLocaleString();
 document.getElementById('curDate').style.visibility = 'hidden';
 
+// let fetchVal = document.getElementById('fetch');
+// let XMLVal = document.getElementById('XMLHttpRequest');
+// console.log(fetchVal.checked);
+// console.log(XMLVal.checked);
+
 // helper function to format the response data
 function formatResponse(response) {
     var result = "<pre>";
@@ -16,11 +21,6 @@ postBtn.addEventListener("click", () => {
     let ID = document.getElementById("id").value;
     let articleName = document.getElementById("article_name").value;
     let articleBody = document.getElementById("article_body").value;
-    let input = {
-    id: ID,
-    article_name: articleName,
-    article_body: articleBody
-    };
     let formData = new FormData();
     formData.set("id", ID);
     formData.set("article name", articleName);
@@ -60,11 +60,6 @@ putBtn.addEventListener("click", () => {
     let ID = document.getElementById("id").value;
     let articleName = document.getElementById("article_name").value;
     let articleBody = document.getElementById("article_body").value;
-    let input = {
-    id: ID,
-    article_name: articleName,
-    article_body: articleBody
-    };
     let formData = new FormData();
     formData.set("id", ID);
     formData.set("article name", articleName);
