@@ -44,17 +44,12 @@ postBtn.addEventListener("click", () => {
         let articleName = document.getElementById("article_name").value;
         let articleBody = document.getElementById("article_body").value;
         let date = document.getElementById("date").value;
-        // let input = {
-        //     id : ID,
-        //     article_name : articleName,
-        //     article_body : articleBody,
-        //     date : date
-        // };
         let formData = new FormData();
         formData.set("id", ID);
         formData.set("article name", articleName);
         formData.set("article body", articleBody);
         formData.set("date", date);
+        
         request.responseType = "json";
         request.send(formData);
         request.addEventListener("load", function(){
@@ -130,17 +125,12 @@ putBtn.addEventListener("click", () => {
         let articleName = document.getElementById("article_name").value;
         let articleBody = document.getElementById("article_body").value;
         let date = document.getElementById("date").value;
-        // let input = {
-        //     id : ID,
-        //     article_name : articleName,
-        //     article_body : articleBody,
-        //     date : date
-        // };
         let formData = new FormData();
         formData.set("id", ID);
         formData.set("article name", articleName);
         formData.set("article body", articleBody);
         formData.set("date", date);
+
         request.responseType = "json";
         request.send(formData);
         request.addEventListener("load", function(){
