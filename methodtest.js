@@ -18,7 +18,7 @@ postBtn.addEventListener("click", () => {
         formData.set("article name", articleName);
         formData.set("article body", articleBody);
         formData.set("date", date);
-    
+        
         fetch("https://httpbin.org/post", {
         method: "POST",
         body: formData
